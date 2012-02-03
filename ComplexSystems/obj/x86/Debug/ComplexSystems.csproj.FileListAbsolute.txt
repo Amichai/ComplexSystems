@@ -1,0 +1,11 @@
+c:\users\amichai\documents\visual studio 2010\Projects\ComplexSystems\ComplexSystems\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\amichai\documents\visual studio 2010\Projects\ComplexSystems\ComplexSystems\bin\Debug\ComplexSystems.exe
+c:\users\amichai\documents\visual studio 2010\Projects\ComplexSystems\ComplexSystems\bin\Debug\ComplexSystems.pdb
+c:\users\amichai\documents\visual studio 2010\Projects\ComplexSystems\ComplexSystems\obj\x86\Debug\ComplexSystems.exe
+c:\users\amichai\documents\visual studio 2010\Projects\ComplexSystems\ComplexSystems\obj\x86\Debug\ComplexSystems.pdb
+c:\users\amichai\documents\visual studio 2010\Projects\ComplexSystems\ComplexSystems\bin\Debug\Common.dll
+c:\users\amichai\documents\visual studio 2010\Projects\ComplexSystems\ComplexSystems\bin\Debug\MathNet.Numerics.dll
+c:\users\amichai\documents\visual studio 2010\Projects\ComplexSystems\ComplexSystems\bin\Debug\zlib.net.dll
+c:\users\amichai\documents\visual studio 2010\Projects\ComplexSystems\ComplexSystems\bin\Debug\Common.pdb
+c:\users\amichai\documents\visual studio 2010\Projects\ComplexSystems\ComplexSystems\bin\Debug\MathNet.Numerics.pdb
+c:\users\amichai\documents\visual studio 2010\Projects\ComplexSystems\ComplexSystems\bin\Debug\MathNet.Numerics.xml
