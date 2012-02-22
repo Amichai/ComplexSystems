@@ -20,6 +20,7 @@ namespace ComplexSystems {
 			var analysis = new List<Signal>();
 			for (int i = 0; i < numberOfMomentsToTest ; i++) {
 				analysis.Add(momentVals[i].SignalAnalysisSignal());
+				new Histogram(momentVals[i]).Graph();
 			}
 			return analysis;
 		}

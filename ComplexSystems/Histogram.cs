@@ -20,6 +20,19 @@ namespace ComplexSystems {
 			}
 		}
 
+		/// <summary>Uses Scott's choice algorithm to assign bin width:
+		/// http://en.wikipedia.org/wiki/Histogram#Number_of_bins_and_width</summary>
+		public Histogram(Signal data) {
+			this.data = data;
+			var bS = (3.5 * data.StandardDeviation()) / Math.Pow(data.Count(), .33333333333333);
+			if(bS <= 0)
+				bS = .01;
+			this.binSize = bS;
+			for (int i = 0; i < data.Count(); i++) {
+				IncrementAt((int)Math.Floor(data[i] / binSize));
+			}
+		}
+
 		public Histogram Normalize() {
 			int totalPoints = positiveBins.Count() + negativeBins.Count();
 			for (int i = 0; i < positiveBins.Count(); i++) {
