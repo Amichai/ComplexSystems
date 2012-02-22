@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Common;
+using System.Diagnostics;
 
 namespace ComplexSystems {
 	//Signal generators
@@ -26,7 +27,9 @@ namespace ComplexSystems {
 				var signal = SignalGenerator.IteratedRandomMultiplication(10000, 3);
 				signals.Add(signal);
 			}
-			SeriesTrialAnalysis.CompareAListOfSeries(signals);
+			var A  = SeriesTrialAnalysis.CompareAListOfSeries(signals);
+			for (int i = 0; i < A.Count(); i++)
+				Debug.Print(A[i].ToString() + "\n");
 			
 
 			

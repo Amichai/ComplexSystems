@@ -22,6 +22,14 @@ namespace ComplexSystems {
 			}
 		}
 
+		public override string ToString() {
+			string output = string.Empty;
+			for(int i=0;i < data.Count();i++){
+				output += data[i].ToString() + " ";
+			}
+			return output;
+		}
+
 		public void GraphRankOrder(int pointsToGraph){
 			data.Sort();
 			data.Reverse();

@@ -8,7 +8,6 @@ using Common;
 namespace ComplexSystems {
 	public class SignalGenerator {
 		public static Signal CityDevelopment(int startingCities, int iterations, double b = .1) {
-			Random rand = new Random();
 			Signal cities = new Signal();
 			for (int i = 0; i < startingCities; i++) {
 				cities.Add(1);
@@ -31,7 +30,6 @@ namespace ComplexSystems {
 		}
 
 		public static Signal RandomNumber(int outputValues, int minVal, int maxVal) {
-			Random rand = new Random();
 			Signal vals = new Signal(outputValues);
 			for (int i = 0; i < outputValues; i++) {
 				vals.Add(rand.Next(minVal, maxVal) + rand.NextDouble());
@@ -41,7 +39,6 @@ namespace ComplexSystems {
 
 		public static Signal GaussianDistribution(int outputValues, int minVal, int maxVal, int elementsToSum) {
 			Signal vals = new Signal(outputValues);
-			Random rand = new Random();
 			for (int i = 0; i < outputValues; i++) {
 				double sum = 0;
 				for (int j = 0; j < elementsToSum; j++) {
@@ -52,9 +49,9 @@ namespace ComplexSystems {
 			return vals;
 		}
 
+		static Random rand = new Random();
 		public static Signal IteratedRandomMultiplication(int iterations, int additiveConstant) {
 			Signal newValues = new Signal(iterations);
-			Random rand = new Random();
 			double product = 1;
 			for (int i = 0; i < iterations; i++) {
 				product *= rand.NextDouble();
