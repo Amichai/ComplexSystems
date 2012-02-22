@@ -6,8 +6,22 @@ using Common;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ComplexSystems {
-	public class DataSeries {
+	public class Signal {
 		List<double> data = new List<double>();
+		public Signal(params double[] seed) {
+			this.data = seed.ToList();
+			this.MaxVal = this.data.Max();
+			this.MinVal = this.data.Min();
+			this.Sum = this.data.Sum();
+			this.sumSquared = this.Sum.Sqrd();
+		}
+
+		public Signal(Func<double, double> signal, double dt, double startTime, double endTime) {
+			for (double t = startTime; t < endTime; t+= dt) {
+				this.Add(signal(t));
+			}
+		}
+
 		public void GraphRankOrder(int pointsToGraph){
 			data.Sort();
 			data.Reverse();
@@ -34,14 +48,14 @@ namespace ComplexSystems {
 		double Sum = 0;
 		double sumSquared = 0;
 
-		public DataSeries(){}
+		public Signal(){}
 
-		public DataSeries(int count) {
+		public Signal(int count) {
 			data = new List<double>(count);
 		}
 
-		public DataSeries Transform(Func<double, double> f) {
-			DataSeries ser = new DataSeries(data.Count());
+		public Signal Transform(Func<double, double> f) {
+			Signal ser = new Signal(data.Count());
 			for(int i=0; i < data.Count(); i++){
 				ser.Add(f(data[i]));
 			}
@@ -67,8 +81,29 @@ namespace ComplexSystems {
 			set { data[i] = value;  }
 		}
 
+		public Signal SignalAnalysisSignal() {
+			int numberOfTests = 12;
+			Signal newSignal = new Signal(numberOfTests -1);
+			for (int i = 1; i < numberOfTests; i++)
+				newSignal.Add(Moment(i));
+			return newSignal;
+		}
+
 		public Histogram GetHistogram(double binSize) {
 			return new Histogram(this, binSize);
+		}
+
+		public Histogram GetHistogram(double binSize, bool cumulative) {
+			return new Histogram(this, binSize, cumulative);
+		}
+
+		public double Moment(int degree) {
+			Signal signal = new Signal(data.Count());
+			double mean = Mean();
+			for (int i = 0; i < data.Count(); i++) {
+				signal.Add(Math.Pow(data[i] - mean, degree));
+			}
+			return signal.Mean() / (Math.Pow(StandardDeviation(), degree));
 		}
 
 		public void Graph(int startIdx, int endIdx = 0) {
@@ -96,14 +131,18 @@ namespace ComplexSystems {
 
 		double variance = double.MinValue;
 
+		public double StandardDeviation(){
+			return Math.Sqrt(Variance());
+		}
+
 		public double Variance() {
 			if (variance == double.MinValue) {
 				variance =(sumSquared / data.Count()) - Mean().Sqrd();
 			} return variance;
 		}
 
-		public DataSeries AutoCorrelation() {
-			DataSeries ser = new DataSeries();
+		public Signal AutoCorrelation() {
+			Signal ser = new Signal();
 			for (int j = 0; j < data.Count() / 2; j++) {
 				int numOftests = data.Count() - j;
 				double sum = 0;
@@ -114,6 +153,20 @@ namespace ComplexSystems {
 				ser.Add(A*sum);
 			}
 			return ser;
+		}
+
+		public Signal RankOrder(int amount) {
+			Signal sig = new Signal();
+			data.Sort();
+			data.Reverse();
+			for (int i = 0; i < amount; i++) {
+				sig.Add(data[i]);
+			}
+			return sig;
+		}
+
+		public Signal RankOrder() {
+			return RankOrder(data.Count());
 		}
 	}
 }

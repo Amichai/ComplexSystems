@@ -6,10 +6,10 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Common;
 
 namespace ComplexSystems {
-	public static class DataSeriesGenerator {
-		public static DataSeries CityDevelopment(int startingCities, int iterations, double b = .1) {
+	public class SignalGenerator {
+		public static Signal CityDevelopment(int startingCities, int iterations, double b = .1) {
 			Random rand = new Random();
-			DataSeries cities = new DataSeries();
+			Signal cities = new Signal();
 			for (int i = 0; i < startingCities; i++) {
 				cities.Add(1);
 			}
@@ -30,17 +30,17 @@ namespace ComplexSystems {
 			return cities;
 		}
 
-		public static DataSeries RandomNumber(int outputValues, int minVal, int maxVal) {
+		public static Signal RandomNumber(int outputValues, int minVal, int maxVal) {
 			Random rand = new Random();
-			DataSeries vals = new DataSeries(outputValues);
+			Signal vals = new Signal(outputValues);
 			for (int i = 0; i < outputValues; i++) {
 				vals.Add(rand.Next(minVal, maxVal) + rand.NextDouble());
 			}
 			return vals;
 		}
 
-		public static DataSeries GaussianDistribution(int outputValues, int minVal, int maxVal, int elementsToSum) {
-			DataSeries vals = new DataSeries(outputValues);
+		public static Signal GaussianDistribution(int outputValues, int minVal, int maxVal, int elementsToSum) {
+			Signal vals = new Signal(outputValues);
 			Random rand = new Random();
 			for (int i = 0; i < outputValues; i++) {
 				double sum = 0;
@@ -52,13 +52,25 @@ namespace ComplexSystems {
 			return vals;
 		}
 
-		public static DataSeries IterativeFunctionApplication(List<double> seedVals, int iterations) {
-			DataSeries newValues = new DataSeries(seedVals.Count() + iterations);
+		public static Signal IteratedRandomMultiplication(int iterations, int additiveConstant) {
+			Signal newValues = new Signal(iterations);
+			Random rand = new Random();
+			double product = 1;
+			for (int i = 0; i < iterations; i++) {
+				product *= rand.NextDouble();
+				product += (rand.NextDouble()* additiveConstant);
+				newValues.Add(product);
+			}
+			return newValues;
+		}
+
+		public static Signal IterativeFunctionApplication(List<double> seedVals, int iterations) {
+			Signal newValues = new Signal(seedVals.Count() + iterations);
 			for (int i = 0; i < seedVals.Count(); i++) {
 				newValues.Add(Math.Log10(seedVals[i]));
 			}
 			for (int i = 0; i < iterations; i++) {
-				double first = Math.Abs(newValues[i]);
+				double first = Math.Pow(10,Math.Abs(newValues[i]));
 				double second = Math.Abs(newValues[i + 1]);
 				double third = Math.Abs(newValues[i + 2]);
 				switch ((int)first % 4) {
