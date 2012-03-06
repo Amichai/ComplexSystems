@@ -21,24 +21,32 @@ namespace ComplexSystems {
 	//and study the evolution of Series' over time
 
 	class Program {
+
 		static void Main(string[] args) {
+
+			SignalGenerator.PossionDistribution(10000).GetHistogram(1).Graph();
+
+			//Random rand = new Random();
+			//Signal randomNumbers = new Signal();
+			//for(int i=0; i< 100000; i++){
+			//    randomNumbers.Add(rand.NextDouble());
+			//}
+			//randomNumbers.GetHistogram(.0005).GetSignal().GetHistogram(1).Graph();
+
+			
+
+			
+		}
+
+		static void SignalComparer() {
 			var signals = new List<Signal>();
 			for (int i = 0; i < 20; i++) {
 				var signal = SignalGenerator.IteratedRandomMultiplication(10000, 3);
 				signals.Add(signal);
 			}
-			var A  = SeriesTrialAnalysis.CompareAListOfSeries(signals);
+			var A = SeriesTrialAnalysis.CompareAListOfSeries(signals, numberOfMomentsToTest: 8);
 			for (int i = 0; i < A.Count(); i++)
 				Debug.Print(A[i].ToString() + "\n");
-			
-
-			
-			//System for generating trials
-			//Pick an experiment, run it many times, build histograms from the data
-		
-
-
-			
 		}
 
 		static void WordRankOrder() {

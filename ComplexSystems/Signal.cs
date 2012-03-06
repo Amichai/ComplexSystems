@@ -97,6 +97,10 @@ namespace ComplexSystems {
 			return newSignal;
 		}
 
+		public Histogram GetHistogram() {
+			return new Histogram(this);
+		}
+
 		public Histogram GetHistogram(double binSize) {
 			return new Histogram(this, binSize);
 		}
@@ -146,7 +150,12 @@ namespace ComplexSystems {
 		public double Variance() {
 			if (variance == double.MinValue) {
 				variance =(sumSquared / data.Count()) - Mean().Sqrd();
-			} return variance;
+			}
+			if (variance < 0) {
+				throw new Exception();
+				//return 0;
+			}
+			return variance;
 		}
 
 		public Signal AutoCorrelation() {

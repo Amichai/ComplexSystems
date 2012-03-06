@@ -1,0 +1,11 @@
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EggDropProblem\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EggDropProblem\bin\Debug\EggDropProblem.exe
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EggDropProblem\bin\Debug\EggDropProblem.pdb
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EggDropProblem\obj\x86\Debug\EggDropProblem.exe
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EggDropProblem\obj\x86\Debug\EggDropProblem.pdb
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EggDropProblem\bin\Debug\Common.dll
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EggDropProblem\bin\Debug\MathNet.Numerics.dll
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EggDropProblem\bin\Debug\zlib.net.dll
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EggDropProblem\bin\Debug\Common.pdb
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EggDropProblem\bin\Debug\MathNet.Numerics.pdb
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EggDropProblem\bin\Debug\MathNet.Numerics.xml

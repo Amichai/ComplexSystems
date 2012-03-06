@@ -10,8 +10,8 @@ namespace ComplexSystems {
 		Signal data;
 		double binSize = 1;
 		bool cumulative = false;
-		List<int> positiveBins = new List<int>();
-		List<int> negativeBins = new List<int>();
+		List<double> positiveBins = new List<double>();
+		List<double> negativeBins = new List<double>();
 		public Histogram(Signal data, double binSize) {
 			this.data = data;
 			this.binSize = binSize;
@@ -34,15 +34,13 @@ namespace ComplexSystems {
 		}
 
 		public Histogram Normalize() {
-			int totalPoints = positiveBins.Count() + negativeBins.Count();
 			for (int i = 0; i < positiveBins.Count(); i++) {
-				positiveBins[i] /= totalPoints;
+				positiveBins[i] /= totalNumberOfPoints;
 			}
 			for (int i = 0; i < negativeBins.Count(); i++) {
-				negativeBins[i] /= totalPoints;
+				negativeBins[i] /= totalNumberOfPoints;
 			}
-			throw new NotImplementedException();
-			//return this;
+			return this;
 		}
 
 		public Histogram(Signal data, double binSize, bool cumulative) {
@@ -54,7 +52,12 @@ namespace ComplexSystems {
 			}
 		}
 
+		private int totalNumberOfPoints = 0;
+
 		private void IncrementAt(int idx) {
+			if (idx > 10000)
+				throw new Exception();
+			totalNumberOfPoints++;
 			if (idx > 0) {
 				var dif = idx - positiveBins.Count();
 				for (int i = 0; i <= dif; i++) {
@@ -71,8 +74,8 @@ namespace ComplexSystems {
 			}
 		}
 
-		public void Graph() {
-			Series ser = new Series();
+		public void Graph(string label = "") {
+			Series ser = new Series(label);
 			if (cumulative == false) {
 				for (int i = 0; i < negativeBins.Count(); i++) {
 					ser.Points.AddXY(-1 * (negativeBins.Count() - 1 - i), negativeBins[i]);
@@ -80,7 +83,7 @@ namespace ComplexSystems {
 					ser.Points.AddXY(j, positiveBins[j]);
 				}
 			} else {
-				int sum = 0;
+				double sum = 0;
 				for (int i = 0; i < negativeBins.Count(); i++) {
 					sum += negativeBins[i];
 					ser.Points.AddXY(-1 * (negativeBins.Count() - i), sum);
@@ -100,5 +103,14 @@ namespace ComplexSystems {
 		}
 		//Find the probability density function
 		//assuming power law, and assuming exponential law
+
+		internal Signal GetSignal() {
+			Signal signal = new Signal();
+			for (int i = 0; i < negativeBins.Count(); i++)
+				signal.Add(negativeBins[i]);
+			for (int i = 0; i < positiveBins.Count(); i++)
+				signal.Add(positiveBins[i]);
+			return signal;
+		}
 	}
 }

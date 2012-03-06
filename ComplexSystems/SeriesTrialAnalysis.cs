@@ -5,8 +5,7 @@ using System.Text;
 
 namespace ComplexSystems {
 	public class SeriesTrialAnalysis {
-		static public List<Signal> CompareAListOfSeries(List<Signal> signals){
-			int numberOfMomentsToTest = 8;
+		static public List<Signal> CompareAListOfSeries(List<Signal> signals, int numberOfMomentsToTest = 8){
 			List<Signal> momentVals = new List<Signal>(numberOfMomentsToTest);
 			for(int k=0; k < numberOfMomentsToTest;k++){
 				var A = new Signal(signals.Count());
@@ -20,7 +19,8 @@ namespace ComplexSystems {
 			var analysis = new List<Signal>();
 			for (int i = 0; i < numberOfMomentsToTest ; i++) {
 				analysis.Add(momentVals[i].SignalAnalysisSignal());
-				new Histogram(momentVals[i]).Graph();
+				
+				new Histogram(momentVals[i]).Graph("Moment: " + (i + 1));
 			}
 			return analysis;
 		}

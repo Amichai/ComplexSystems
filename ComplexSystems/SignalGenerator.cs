@@ -29,6 +29,27 @@ namespace ComplexSystems {
 			return cities;
 		}
 
+		public static Signal GaussianDistribution() {
+
+
+			return null;
+		}
+
+		public static Signal PossionDistribution(int iterations, double lambda = 5) {
+			Signal sig = new Signal();
+			for (int i = 0; i < iterations; i++) {
+				double p = Math.Exp(-lambda);
+				double x = 1;
+				int k = -1;
+				while (x > p) {
+					k++;
+					x *= rand.NextDouble();
+				}
+				sig.Add(k);
+			}
+			return sig;
+		}
+
 		public static Signal RandomNumber(int outputValues, int minVal, int maxVal) {
 			Signal vals = new Signal(outputValues);
 			for (int i = 0; i < outputValues; i++) {

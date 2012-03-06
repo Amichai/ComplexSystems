@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{35387977-FCF5-41C8-BA3A-700CB9F97B16}</ProjectGuid>
+    <ProjectGuid>{26BC4D48-5289-444D-80ED-F546F312C085}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ComplexSystems</RootNamespace>
-    <AssemblyName>ComplexSystems</AssemblyName>
+    <RootNamespace>EggDropProblem</RootNamespace>
+    <AssemblyName>EggDropProblem</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -36,7 +36,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,15 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Economies.cs" />
-    <Compile Include="Histogram.cs" />
-    <Compile Include="SignalGenerator.cs" />
-    <Compile Include="Optimization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeriesTrialAnalysis.cs" />
-    <Compile Include="TextBlock.cs" />
-    <Compile Include="Signal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\OpenPadProject\Common\Common.csproj">
