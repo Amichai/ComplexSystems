@@ -21,10 +21,19 @@ namespace ComplexSystems {
 	//and study the evolution of Series' over time
 
 	class Program {
-
 		static void Main(string[] args) {
 
-			SignalGenerator.PossionDistribution(10000).GetHistogram(1).Graph();
+			//Open some input object
+			//Generate heuristics from that input object (possibly do some iterations)
+			//Add the input object and labels to dictionary
+			//Perform a probabilistic lookup against the library
+			LabeledStorage<string> testing = new LabeledStorage<string>();
+
+
+
+
+			//SignalGenerator.GaussianDistribution(10000).GetHistogram(.1).Graph();
+			//SignalGenerator.PowerLawDistribution(100000).GetHistogram(10).GraphLogLog();
 
 			//Random rand = new Random();
 			//Signal randomNumbers = new Signal();

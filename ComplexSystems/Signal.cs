@@ -8,6 +8,14 @@ using System.Windows.Forms.DataVisualization.Charting;
 namespace ComplexSystems {
 	public class Signal {
 		List<double> data = new List<double>();
+		public Signal(List<double> seed) {
+			this.data = seed;
+			this.MaxVal = this.data.Max();
+			this.MinVal = this.data.Min();
+			this.Sum = this.data.Sum();
+			this.sumSquared = this.Sum.Sqrd();
+		}
+
 		public Signal(params double[] seed) {
 			this.data = seed.ToList();
 			this.MaxVal = this.data.Max();

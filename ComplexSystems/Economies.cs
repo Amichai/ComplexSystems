@@ -3,12 +3,79 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using Common;
 
 namespace ComplexSystems {
+
+	class Economy {
+		Random rand = new Random();
+		const int numberOfJobs = 20;
+		const int numberOfPeople = 30;
+		List<Person>[] jobs = new List<Person>[numberOfJobs];
+		private void randomInitialize() {
+			for (int i = 0; i < numberOfPeople; i++) {
+				var idx = rand.Next(numberOfJobs);
+				jobs[idx].Add(new Person(rand.NextDouble()));
+			}
+			for (int i = 0; i < numberOfJobs; i++) {
+				salaries.Add(rand.NextDouble());
+			}
+		}
+		public Economy() {
+			randomInitialize();
+
+		}
+
+		private void printJobMarket() {
+			for(int i=0; i < jobs.Count(); i++){
+				for(int j=0; j < jobs[i].Count(); j++){
+					Console.WriteLine("Job idx: " + i.ToString() + "\n");
+					Console.WriteLine("Person number: " + jobs[i][j].ToString());
+					Console.WriteLine(" assets: " + jobs[i][j].getAssets().ToString() + "\n");
+				}
+			}
+		}
+
+		private void findNewJobs() {
+			for (int i = 0; i < jobs.Count(); i++) {
+				for (int j = 1; j < jobs[i].Count(); j++) {
+					//Get the highest paying job where you can beat out the last winner
+					//else go to welfare
+				}
+			}
+		}
+		class Person{
+			public Person(double assets) {
+				this.assets = assets;
+			}
+
+			public double assets { get; set; }
+
+			internal void award(double assetsToAdd) {
+				this.assets += assetsToAdd;
+			}
+
+			internal double getAssets() {
+				return this.assets;
+			}
+		}
+		List<double> salaries = new List<double>();
+
+		private void awardSalaries() {
+			for (int j = 0; j < numberOfJobs; j++) {
+				var idx = jobs[j].MaxIndex();
+				jobs[j][idx].award(salaries[j]);
+			}
+		}
+	}
+	
 	class Economies {
 		double totalAssets = 0;
 		Random rand = new Random();
 		Dictionary<entity, List<entity>> socialGraph = new Dictionary<entity, List<entity>>();
+
+
+
 		public Economies() {
 			RandomInitialize(numberOfEntities:30);
 			Iterate(300);

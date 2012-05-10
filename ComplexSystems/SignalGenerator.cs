@@ -28,11 +28,34 @@ namespace ComplexSystems {
 			}
 			return cities;
 		}
+		/// <summary>P(x) = (mu - 1) /x^ mu</summary>
+		public static Signal PowerLawDistribution(int iterations, int mu = 1) {
+			Signal sig = new Signal();
+			for (int i = 0; i < iterations; i++) {
+				var a = 1 / rand.NextDouble();
+				sig.Add(a);
+			}
+			return sig;
+		}
 
-		public static Signal GaussianDistribution() {
+		public static Signal ExponentialDistribution() {
+			///P(x) = 1/x_0 exp(-x/x_0)  0 < x < infinity >
+			/// Homework!
+			throw new NotImplementedException();
+		}
 
-
-			return null;
+		/// <summary>Sigma is the standard deviation</summary>
+		/// <param name="sigma">The standard deviation</param>
+		public static Signal GaussianDistribution(int iterations, double sigma = 1) {
+			//Sigma is the SD
+			Signal sig = new Signal();
+			for (int i = 0; i < iterations; i++) {
+				double r1 = rand.NextDouble();
+				double r2 = rand.NextDouble();
+				double r = Math.Sqrt(-2 * Math.Log(r1)) * Math.Sin(2 * Math.PI* r2) * sigma;
+				sig.Add(r);
+			}
+			return sig;
 		}
 
 		public static Signal PossionDistribution(int iterations, double lambda = 5) {

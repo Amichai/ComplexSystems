@@ -55,7 +55,7 @@ namespace ComplexSystems {
 		private int totalNumberOfPoints = 0;
 
 		private void IncrementAt(int idx) {
-			if (idx > 10000)
+			if (idx > 100000)
 				throw new Exception();
 			totalNumberOfPoints++;
 			if (idx > 0) {
@@ -73,14 +73,33 @@ namespace ComplexSystems {
 				negativeBins[idx]++;
 			}
 		}
+		public void GraphLogLog(string label = "") {
+			Series ser = new Series(label);
+			double A;
+			if (!cumulative) {
+				for (int i = 0; i < negativeBins.Count(); i++) {
+					A = -1 * i * binSize;
+					if(A >0 && negativeBins[i] >0)
+						ser.Points.AddXY(Math.Log(A), Math.Log(negativeBins[i]));
+				} for (int j = 0; j < positiveBins.Count(); j++) {
+					A = j* binSize;
+					if (A > 0 && positiveBins[j] > 0)
+					ser.Points.AddXY(Math.Log(A), Math.Log(positiveBins[j]));
+				}
+			}
+			ser.ChartType = SeriesChartType.Point;
+			//TODO: overload this method so that we have a control to manipulate parameters and redraw the control
+			ser.Graph();
 
+		}
 		public void Graph(string label = "") {
 			Series ser = new Series(label);
-			if (cumulative == false) {
+			if (!cumulative) {
 				for (int i = 0; i < negativeBins.Count(); i++) {
-					ser.Points.AddXY(-1 * (negativeBins.Count() - 1 - i), negativeBins[i]);
+				//for (int i = negativeBins.Count() - 1; i >= 0 ; i--) {
+					ser.Points.AddXY(-1 * (/*negativeBins.Count() - 1 -*/ i) * binSize, negativeBins[i]);
 				} for (int j = 0; j < positiveBins.Count(); j++) {
-					ser.Points.AddXY(j, positiveBins[j]);
+					ser.Points.AddXY(j * binSize, positiveBins[j]);
 				}
 			} else {
 				double sum = 0;
@@ -111,6 +130,29 @@ namespace ComplexSystems {
 			for (int i = 0; i < positiveBins.Count(); i++)
 				signal.Add(positiveBins[i]);
 			return signal;
+		}
+
+		public void SaveImage(string filename) {
+			Series ser = new Series();
+			if (!cumulative) {
+				for (int i = 0; i < negativeBins.Count(); i++) {
+					//for (int i = negativeBins.Count() - 1; i >= 0 ; i--) {
+					ser.Points.AddXY(-1 * (/*negativeBins.Count() - 1 -*/ i) * binSize, negativeBins[i]);
+				} for (int j = 0; j < positiveBins.Count(); j++) {
+					ser.Points.AddXY(j * binSize, positiveBins[j]);
+				}
+			} else {
+				double sum = 0;
+				for (int i = 0; i < negativeBins.Count(); i++) {
+					sum += negativeBins[i];
+					ser.Points.AddXY(-1 * (negativeBins.Count() - i), sum);
+				} for (int j = 0; j < positiveBins.Count(); j++) {
+					sum += positiveBins[j];
+					ser.Points.AddXY(j, sum);
+				}
+			}
+
+			ser.SaveImage(filename);
 		}
 	}
 }

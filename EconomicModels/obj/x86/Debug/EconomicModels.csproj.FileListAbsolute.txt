@@ -1,0 +1,13 @@
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\bin\Debug\EconomicModels.exe
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\bin\Debug\EconomicModels.pdb
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\obj\x86\Debug\EconomicModels.exe
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\obj\x86\Debug\EconomicModels.pdb
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\bin\Debug\Common.dll
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\bin\Debug\MathNet.Numerics.dll
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\bin\Debug\zlib.net.dll
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\bin\Debug\Common.pdb
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\bin\Debug\MathNet.Numerics.pdb
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\bin\Debug\MathNet.Numerics.xml
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\bin\Debug\ComplexSystems.exe
+C:\Users\Amichai\documents\visual studio 2010\Projects\ComplexSystems\EconomicModels\bin\Debug\ComplexSystems.pdb
